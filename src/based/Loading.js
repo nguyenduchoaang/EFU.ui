@@ -1,18 +1,20 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import Logo from "../assets/logo.png";
-const LoadingW = ({ isOpen }) => {
+const Loading = ({ isOpen }) => {
   return (
     <LoadingContainer style={{ display: isOpen ? "flex" : "none" }}>
       <SpinnerContainer>
-        <Spinner />
-        <img src={Logo} alt="logo" />
+        <SpinWrapper>
+          <Spinner />
+          <img src={Logo} alt="logo" />
+        </SpinWrapper>
       </SpinnerContainer>
     </LoadingContainer>
   );
 };
 
-export default LoadingW;
+export default Loading;
 
 const spin = keyframes`
     to {
@@ -38,6 +40,20 @@ const SpinnerContainer = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+const SpinWrapper = styled.div`
+  position: relative;
+  width: 100px;
+  height: 100px;
+  img {
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    object-fit: contain;
     transform: translate(-50%, -50%);
   }
 `;

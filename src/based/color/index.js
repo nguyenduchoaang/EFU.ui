@@ -1,5 +1,6 @@
 /**
  * @todo config color for project
+ * @link https://colorhunt.co/palette/06283d1363df47b5ffdff6ff
  */
 
 const Color = {

@@ -3,7 +3,7 @@ import { HeaderIcon } from "../icon/configIcon";
 const MenuHeader = [
   {
     id: 1,
-    link: "/home",
+    link: "/",
     name: "Trang chủ",
     icon: <HeaderIcon.Home />,
   },

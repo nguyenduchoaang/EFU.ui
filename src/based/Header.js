@@ -8,7 +8,6 @@ import { MenuHeader } from "./menuConfig";
 import { HeaderIcon } from "./icon/configIcon";
 import { Color } from "./color";
 export default function Header() {
-  const { showLoading, hideLoading } = useLoading();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [name, setName] = useState("");
 
@@ -78,7 +77,10 @@ export default function Header() {
   };
 
   return (
-    <header className="flex items-center justify-between bg-background px-4 py-3 shadow-sm sm:px-6 md:py-4">
+    <header
+      style={{ zIndex: "999" }}
+      className=" w-full z-9999 fixed flex  items-center justify-between bg-background px-4 py-3 shadow-sm sm:px-6 md:py-4"
+    >
       <Link href="#" className="flex items-center gap-2 font-bold">
         <HeaderIcon.Logo fill={Color.color3} />
         <span className="text-lg sm:text-xl">English For You</span>
