@@ -3,9 +3,9 @@ import { HeaderIcon } from "../icon/configIcon";
 const MenuHeader = [
   {
     id: 1,
-    link: "/main",
+    link: "/home",
     name: "Trang chủ",
-    icon: <HeaderIcon.Main />,
+    icon: <HeaderIcon.Home />,
   },
   {
     id: 2,
@@ -17,13 +17,13 @@ const MenuHeader = [
     id: 3,
     link: "/word",
     name: "Từ vựng",
-    icon: <HeaderIcon.Tutorial />,
+    icon: <HeaderIcon.Word />,
   },
   {
     id: 4,
-    link: "/tutorial",
+    link: "/practice",
     name: "Ôn tập",
-    icon: <HeaderIcon.Main />,
+    icon: <HeaderIcon.Practice />,
   },
 ];
 
