@@ -1,3 +1,18 @@
+const DataCategory = [
+  {
+    id: 1,
+    title: "Chủ đề",
+  },
+  {
+    id: 2,
+    title: "Mục tiêu",
+  },
+  {
+    id: 3,
+    title: "Ôn thi",
+  },
+];
+
 const DataMenu = [
   {
     id: 1,
@@ -55,4 +70,19 @@ const DataMenu = [
   },
 ];
 
-export { DataMenu };
+const ButtonData = [
+  {
+    id: 1,
+    title: "Đã biết",
+  },
+  {
+    id: 2,
+    title: "Đã nhớ",
+  },
+  {
+    id: 3,
+    title: "Flashcard",
+  },
+];
+
+export { DataMenu, DataCategory, ButtonData };

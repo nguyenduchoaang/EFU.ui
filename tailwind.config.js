@@ -2,10 +2,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
+    "./pages/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+    "./app/**/*.{js,jsx}",
+    "./src/**/*.{js,jsx}",
   ],
   prefix: "",
   theme: {
@@ -14,10 +14,40 @@ module.exports = {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
+
+        tb: { max: "768px" },
+        // => @media (min-width: 768px and max-width: 1023px) { ... }
+
+        // lg: { min: "1024px", max: "1279px" },
+        // // => @media (min-width: 1024px and max-width: 1279px) { ... }
+
+        // xl: { min: "1280px", max: "1535px" },
+        // => @media (min-width: 1280px and max-width: 1535px) { ... }
       },
     },
     extend: {
       colors: {
+        /**
+         * @todo config color for project
+         * @link https://colorhunt.co/palette/06283d1363df47b5ffdff6ff
+         */
+        color1: "#06283D",
+        color2: "#1363DF",
+        black: "#000",
+        color3: "#47B5FF",
+        color4: "#DFF6FF",
+
+        /** color type of word
+         * @summary noun (danh từ), verb (động từ), adj (tính từ), adverb(trạng  từ), pronoun(đại từ)
+         * @link https://www.englishclub.com/grammar/parts-of-speech_1.htm
+         */
+
+        noun: "#ECCA9C",
+        verb: "#41B06E",
+        adj: "#F27BBD",
+        adverb: "#E59BE9",
+        pronoun: "#E91E63",
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -79,4 +109,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};

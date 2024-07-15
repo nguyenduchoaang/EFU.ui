@@ -6,4 +6,11 @@ const SET_MENU = (payload) => {
   };
 };
 
-export { SET_MENU };
+const SET_CATEGORY = (payload) => {
+  return {
+    type: CONSTANTS.SELECTED_CATEGORY,
+    payload: payload,
+  };
+};
+
+export { SET_MENU, SET_CATEGORY };
