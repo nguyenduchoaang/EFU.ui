@@ -20,4 +20,18 @@ const SHOW_MARK = (payload) => {
   };
 };
 
-export { SET_MENU, SET_CATEGORY, SHOW_MARK };
+const ADD_WORD = (payload) => {
+  return {
+    type: CONSTANTS.ADD_WORD,
+    payload: payload,
+  };
+};
+
+const REMOVE_WORD = (payload) => {
+  return {
+    type: CONSTANTS.REMOVE_WORD,
+    payload: payload,
+  };
+};
+
+export { SET_MENU, SET_CATEGORY, SHOW_MARK, ADD_WORD, REMOVE_WORD };

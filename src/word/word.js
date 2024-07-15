@@ -4,7 +4,6 @@ import { Input } from "../components/ui/input";
 import DropdownMenu from "../based/Dropdown";
 import { DataMenu, DataCategory, ButtonData, WordData } from "./Data";
 import reducer, { initState } from "./wordReducer/reducer";
-import { SET_MENU, SET_CATEGORY, SHOW_MARK } from "./wordReducer/action";
 import { Card, CardContent } from "../components/ui/card";
 import styled from "styled-components";
 import { HeaderIcon } from "../based/icon/ConfigIcon";
@@ -12,6 +11,13 @@ import { ToastAction } from "../components/ui/toast";
 import { useToast } from "../components/ui/use-toast";
 import Common from "../based/Common";
 import { Link } from "react-router-dom";
+import {
+  SET_MENU,
+  SET_CATEGORY,
+  SHOW_MARK,
+  ADD_WORD,
+  REMOVE_WORD,
+} from "./wordReducer/action";
 
 export default function Word() {
   const { toast } = useToast();
@@ -22,9 +28,11 @@ export default function Word() {
     selectedMenu,
     selectedLevel,
     showMark,
+    listWord,
   } = state;
 
-  const handleToast = (title) => {
+  const handleToast = (props) => {
+    const { title, item, indexItem } = props;
     switch (title) {
       case "Đã biết":
         toast({
@@ -33,9 +41,24 @@ export default function Word() {
           description: "Bạn đã thêm từ vào danh sách từ vựng Đã Biết !",
           status: "success",
           action: (
-            <ToastAction altText="Xem danh sách">
-              <Link to="/list-word">Xem danh sách</Link>
-            </ToastAction>
+            <div className="flex flex-col">
+              <ToastAction className="w-[150px] mb-2" altText="Xem danh sách">
+                Xem danh sách
+              </ToastAction>
+              <ToastAction
+                onClick={() =>
+                  dispatch(
+                    ADD_WORD({
+                      item: item,
+                      indexItem: indexItem,
+                    })
+                  )
+                }
+                altText="Xem danh sách"
+              >
+                Hoàn tác
+              </ToastAction>
+            </div>
           ),
         });
         break;
@@ -88,6 +111,8 @@ export default function Word() {
     }
   };
 
+  console.log("listWord", listWord);
+
   useEffect(() => {}, []);
 
   return (
@@ -97,7 +122,7 @@ export default function Word() {
     >
       <aside className="  md:flex md:flex-col max-md:w-full  w-1/4 border-r bg-background p-6 gap-6">
         <div className="flex flex-col gap-2">
-          <h3 className="text-lg font-medium">Word Categories</h3>
+          <h3 className="text-lg font-medium">Danh mục từ vựng</h3>
           <div
             className="flex items-center overflow-x-auto scrollbar-hide 
               scrollbar scrollbar-thumb-accent scrollbar-track-muted"
@@ -143,10 +168,10 @@ export default function Word() {
       <main className="flex-1 p-6">
         <div className="grid gap-6">
           <section className="grid grid-cols-1 gap-8 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-            {WordData.map((item, index) => (
+            {listWord.map((item, index) => (
               <Card
                 style={{
-                  // border: `1px solid ${renderColor(item.type)}`,
+                  border: `1px solid ${renderColor(item.type)}`,
                   boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
                 }}
                 className={`relative h-auto min-h-[580px] overflow-hidden rounded-lg group  shadow-md`}
@@ -161,7 +186,7 @@ export default function Word() {
                       <HeaderIcon.Menu width="17" height="17" />
                     </STT>
                     <TagName bgColor={renderColor(item.type)}>
-                      {item.type}
+                      {item.type.toUpperCase()}
                     </TagName>
                   </div>
                   <p className="h-[70%]">
@@ -209,15 +234,19 @@ export default function Word() {
                         variant="outline"
                         style={{}}
                         className={`button_action px-4 py-2  bg-background hover:transform hover:scale-105 transition-transform duration-500 ease-in-out hover:text-black-foreground`}
-                        onClick={() => handleToast(itemBtn.title)}
+                        onClick={() => {
+                          handleToast({
+                            title: itemBtn.title,
+                            item: item,
+                            indexItem: index,
+                          });
+                          dispatch(REMOVE_WORD(item.id));
+                        }}
                       >
                         {itemBtn.title}
                       </Button>
                     ))}
                   </ButtonWrapperBottom>
-                  {/* <Button className="" size="sm" variant="outline">
-                    Đã biết
-                  </Button> */}
                 </CardContent>
               </Card>
             ))}
