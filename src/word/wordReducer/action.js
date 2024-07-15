@@ -13,4 +13,11 @@ const SET_CATEGORY = (payload) => {
   };
 };
 
-export { SET_MENU, SET_CATEGORY };
+const SHOW_MARK = (payload) => {
+  return {
+    type: CONSTANTS.SHOW_MARK,
+    payload: payload,
+  };
+};
+
+export { SET_MENU, SET_CATEGORY, SHOW_MARK };

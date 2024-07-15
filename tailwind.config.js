@@ -14,7 +14,6 @@ module.exports = {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
-
         tb: { max: "768px" },
         // => @media (min-width: 768px and max-width: 1023px) { ... }
 
@@ -41,12 +40,16 @@ module.exports = {
          * @summary noun (danh từ), verb (động từ), adj (tính từ), adverb(trạng  từ), pronoun(đại từ)
          * @link https://www.englishclub.com/grammar/parts-of-speech_1.htm
          */
-
         noun: "#ECCA9C",
         verb: "#41B06E",
         adj: "#F27BBD",
         adverb: "#E59BE9",
         pronoun: "#E91E63",
+
+        /** color for toast */
+        wordKnow: "#47B5FF",
+        wordRemember: "#FFCF96",
+        flashCard: "#74E291",
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

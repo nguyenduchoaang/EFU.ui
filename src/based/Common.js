@@ -52,6 +52,26 @@ var Common = {
     );
     return jsDate;
   },
+  checkWord(word, example) {
+    const wordCheck = word.toLowerCase();
+    const exampleCheck = example.toLowerCase();
+    if (exampleCheck.indexOf(wordCheck) !== -1) {
+      const regex = new RegExp(`(\\b${wordCheck}\\b)`, "gi");
+
+      const newExample = example.replace(regex, (match) => {
+        if (match.charAt(0) === match.charAt(0).toUpperCase()) {
+          return `<strong>${word.charAt(0).toUpperCase()}${word.slice(
+            1
+          )}</strong>`;
+        } else {
+          return `<strong>${word}</strong>`;
+        }
+      });
+      return <span dangerouslySetInnerHTML={{ __html: newExample }} />;
+    }
+
+    return example;
+  },
 };
 
 export default Common;

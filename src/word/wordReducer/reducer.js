@@ -5,6 +5,7 @@ const initState = {
   categories: [],
   selectedMenu: 1,
   selectedLevel: 1,
+  showMark: 0,
 };
 
 const reducer = (state, action) => {
@@ -21,6 +22,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         selectedCategory: action.payload,
+      };
+    case CONSTANTS.SHOW_MARK:
+      return {
+        ...state,
+        showMark: action.payload === state.showMark ? 0 : action.payload,
       };
     default:
       return state;
