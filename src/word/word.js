@@ -5,7 +5,6 @@ import { DataMenu, DataCategory, ButtonData, WordData } from "./Data";
 import reducer, { initState } from "./wordReducer/reducer";
 import { Card, CardContent } from "../components/ui/card";
 import styled from "styled-components";
-import { HeaderIcon } from "../based/icon/ConfigIcon";
 import { ToastAction } from "../components/ui/toast";
 import { useToast } from "../components/ui/use-toast";
 import Common from "../based/Common";
