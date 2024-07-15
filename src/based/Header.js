@@ -5,7 +5,7 @@ import { Button } from "../components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "../components/ui/sheet";
 import { Link } from "react-router-dom";
 import { MenuHeader } from "./menuConfig";
-import { HeaderIcon } from "./icon/ConfigIcon";
+import { HeaderIcon } from "./icon/configIcon";
 import { Color } from "./color";
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

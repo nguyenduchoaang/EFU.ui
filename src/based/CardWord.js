@@ -7,7 +7,7 @@ import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import Common from "../based/Common";
 import styled from "styled-components";
-import { HeaderIcon } from "./icon/ConfigIcon";
+import { HeaderIcon } from "./icon/configIcon";
 
 const CardWord = (props) => {
   const {

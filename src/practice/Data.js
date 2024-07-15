@@ -1,4 +1,4 @@
-import { PracticeIcon } from "../based/icon/ConfigIcon";
+import { PracticeIcon } from "../based/icon/configIcon";
 
 const DataCard = [
   {
