@@ -22,4 +22,6 @@ export default function DefaultLayout({ children }) {
   );
 }
 
-const Child = styled.div``;
+const Child = styled.div`
+  padding-top: 88px;
+`;

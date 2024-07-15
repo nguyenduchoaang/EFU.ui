@@ -1,3 +1,8 @@
+/**
+ * @param {object} props
+ *
+ */
+
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import Common from "../based/Common";

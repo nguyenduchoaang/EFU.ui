@@ -5,7 +5,7 @@ import {
 } from "../components/ui/collapsible";
 import { Link } from "react-router-dom";
 
-export default function DropdownMenu(props) {
+export default function MenuToggle(props) {
   const { data, onSelect } = props;
   return (
     <>

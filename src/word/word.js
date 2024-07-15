@@ -1,7 +1,6 @@
 import { useState, useReducer, useEffect } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
-import DropdownMenu from "../based/Dropdown";
 import { DataMenu, DataCategory, ButtonData, WordData } from "./Data";
 import reducer, { initState } from "./wordReducer/reducer";
 import { Card, CardContent } from "../components/ui/card";
@@ -20,6 +19,7 @@ import {
   ADD_WORD,
   REMOVE_WORD,
 } from "./wordReducer/action";
+import MenuToggle from "../based/MenuToggle";
 
 export default function Word() {
   const { toast } = useToast();
@@ -119,7 +119,6 @@ export default function Word() {
             </div>
           ),
         });
-
         break;
       default:
         break;
@@ -131,10 +130,7 @@ export default function Word() {
   useEffect(() => {}, []);
 
   return (
-    <WordWrapper
-      style={{ paddingTop: "88px" }}
-      className="flex min-h-screen max-md:flex-col   w-full bg-background"
-    >
+    <WordWrapper className="flex min-h-screen max-md:flex-col   w-full bg-background">
       <aside className="  md:flex md:flex-col max-md:w-full  w-1/4 border-r bg-background p-6 gap-6">
         <div className="flex flex-col gap-2">
           <h3 className="text-lg font-medium">Danh mục từ vựng</h3>
@@ -162,7 +158,7 @@ export default function Word() {
           <div className="grid gap-2">
             <section>
               <div className="max-w-3xl mx-auto">
-                <DropdownMenu
+                <MenuToggle
                   data={DataMenu}
                   onSelect={(data) => dispatch(SET_MENU(data))}
                 />

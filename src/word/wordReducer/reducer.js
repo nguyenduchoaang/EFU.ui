@@ -10,7 +10,6 @@ const initState = {
 };
 
 const reducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case CONSTANTS.SELECTED_MENU_WORD:
       const { selected, selectedSub } = action.payload;

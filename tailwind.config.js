@@ -52,6 +52,12 @@ module.exports = {
         flashCard: "#FFCF96",
         success: "#47B5FF",
 
+        /** color for practice */
+        totalWord: "#47B5FF",
+        totalWordKnow: "#FFCBCB",
+        totalWordRemember: "#ACE1AF",
+        totalPoint: "#EF9C66",
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
