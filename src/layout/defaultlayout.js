@@ -15,7 +15,6 @@ export default function DefaultLayout({ children }) {
       <Header />
       <Child className="child">
         {children}
-
         <Toaster />
       </Child>
     </>
