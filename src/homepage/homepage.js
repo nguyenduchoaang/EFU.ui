@@ -51,7 +51,7 @@ export default function HomePage() {
               />
             </div>
           </div>
-          <svg
+          {/* <svg
             style={{ position: "absolute", bottom: "0", zIndex: "-999" }}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1440 320"
@@ -61,7 +61,7 @@ export default function HomePage() {
               fill-opacity="1"
               d="M0,224L48,197.3C96,171,192,117,288,117.3C384,117,480,171,576,202.7C672,235,768,245,864,250.7C960,256,1056,256,1152,234.7C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
             ></path>
-          </svg>
+          </svg> */}
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
           <div className="container px-4 md:px-6">
