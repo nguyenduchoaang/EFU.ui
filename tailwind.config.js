@@ -40,16 +40,17 @@ module.exports = {
          * @summary noun (danh từ), verb (động từ), adj (tính từ), adverb(trạng  từ), pronoun(đại từ)
          * @link https://www.englishclub.com/grammar/parts-of-speech_1.htm
          */
-        noun: "#ECCA9C",
-        verb: "#41B06E",
-        adj: "#F27BBD",
+        noun: "#FFCBCB",
+        verb: "#ACE1AF",
+        adj: "#FFCDEA",
         adverb: "#E59BE9",
-        pronoun: "#E91E63",
+        pronoun: "#B7C9F2",
 
         /** color for toast */
         wordKnow: "#47B5FF",
-        wordRemember: "#FFCF96",
-        flashCard: "#74E291",
+        wordRemember: "#74E291",
+        flashCard: "#FFCF96",
+        success: "#47B5FF",
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

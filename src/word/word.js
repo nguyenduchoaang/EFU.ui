@@ -28,8 +28,8 @@ export default function Word() {
     switch (title) {
       case "Đã biết":
         toast({
-          title: "Từ đã biết 💯 ",
-          variant: "wordKnow",
+          title: "Từ Đã Biết 💯 ",
+          variant: "success",
           description: "Bạn đã thêm từ vào danh sách từ vựng Đã Biết !",
           status: "success",
           action: (
@@ -41,8 +41,8 @@ export default function Word() {
         break;
       case "Đã nhớ":
         toast({
-          title: "Từ đã nhớ 🌟 ",
-          variant: "wordRemember",
+          title: "Từ Đã Nhớ 🔔 ",
+          variant: "success",
           description: "Bạn đã thêm từ vào danh sách từ vựng Đã Nhớ !",
           status: "success",
           action: (
@@ -54,8 +54,8 @@ export default function Word() {
         break;
       case "Flash Card":
         toast({
-          title: "Thêm vào Flash Card🌟 ",
-          variant: "flashCard",
+          title: "Thêm vào Flash Card 📖 ",
+          variant: "success",
           description: "Bạn đã thêm từ vào danh sách Flash Card !",
           status: "success",
           action: (
@@ -74,15 +74,15 @@ export default function Word() {
   const renderColor = (type) => {
     switch (type) {
       case "noun":
-        return "#ECCA9C";
+        return "#FFCBCB";
       case "verb":
-        return "#41B06E";
+        return "#ACE1AF";
       case "adj":
-        return "#F27BBD";
+        return "#FFCDEA";
       case "adverb":
         return "#E59BE9";
       case "pronoun":
-        return "#E91E63";
+        return "#B7C9F2";
       default:
         return "black";
     }
@@ -142,11 +142,14 @@ export default function Word() {
 
       <main className="flex-1 p-6">
         <div className="grid gap-6">
-          <section className="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+          <section className="grid grid-cols-1 gap-8 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
             {WordData.map((item, index) => (
               <Card
-                className="relative h-auto min-h-[580px] overflow-hidden rounded-lg group 
-              "
+                style={{
+                  // border: `1px solid ${renderColor(item.type)}`,
+                  boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+                }}
+                className={`relative h-auto min-h-[580px] overflow-hidden rounded-lg group  shadow-md`}
               >
                 <CardContent className="h-full  p-0 ">
                   <div className="card_header h-[10%] ">
@@ -183,7 +186,7 @@ export default function Word() {
                   </p>
                   <CardExample
                     bgColor={renderColor(item.type)}
-                    className="card_example w-full p-3 h-[25%] "
+                    className="card_example w-full p-3  h-[25%] "
                   >
                     <p className="example_english italic">
                       {Common.checkWord(item.word, item.example)}
@@ -197,8 +200,8 @@ export default function Word() {
                     className={`button_wrapper flex gap-2   justify-between ${
                       index + 1 === showMark ? "flex" : "hidden"
                     }  
-                overflow-x-auto scrollbar-hide absolute bottom-0 w-full items-center  p-2  h-[18%]
-                `}
+                  overflow-x-auto scrollbar-hide absolute bottom-0 w-full items-center  p-2  h-[18%]
+                  `}
                   >
                     {ButtonData.map((itemBtn, indexBtn) => (
                       <Button
@@ -206,9 +209,6 @@ export default function Word() {
                         variant="outline"
                         style={{}}
                         className={`button_action px-4 py-2  bg-background hover:transform hover:scale-105 transition-transform duration-500 ease-in-out hover:text-black-foreground`}
-                        // className={`button_action px-4 py-2 bg-background hover:bg-adj hover:text-adj-foreground ${
-                        //   index === 0 ? "first-button" : "other-buttons"
-                        // }`}
                         onClick={() => handleToast(itemBtn.title)}
                       >
                         {itemBtn.title}
@@ -216,8 +216,8 @@ export default function Word() {
                     ))}
                   </ButtonWrapperBottom>
                   {/* <Button className="" size="sm" variant="outline">
-                  Đã biết
-                </Button> */}
+                    Đã biết
+                  </Button> */}
                 </CardContent>
               </Card>
             ))}
@@ -244,6 +244,8 @@ const WordWrapper = styled.div`
   } */
 `;
 
+const CardWrapperCommon = styled.div``;
+
 const CardExample = styled.div`
   background-color: ${(props) => props.bgColor};
 `;
@@ -252,10 +254,13 @@ const TagName = styled.div`
   position: absolute;
   top: 0;
   right: 0;
+
   padding: 0.25rem 0.5rem;
   /* background-color: red; */
-  color: #fff;
   font-size: 0.75rem;
+  width: 75px;
+  text-align: center;
+  height: 30px;
   font-weight: 600;
   border-radius: 0 0 0 0.55rem;
   background-color: ${(props) => props.bgColor};
@@ -265,9 +270,13 @@ const STT = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
-  width: auto;
   text-align: center;
-  color: #fff;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 30px;
   padding: 0.25rem 0.5rem;
   /* background-color: red; */
   font-size: 0.75rem;

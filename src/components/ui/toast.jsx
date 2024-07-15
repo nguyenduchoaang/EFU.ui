@@ -28,7 +28,7 @@ const toastVariants = cva(
         destructive:
           "destructive group border-destructive bg-destructive text-destructive-foreground",
         red: "red group border-red bg-red text-red-foreground",
-        success: "bg-color3",
+        success: "bg-success",
         wordKnow: "bg-wordKnow",
         wordRemember: "bg-wordRemember",
         flashCard: "bg-flashCard",
