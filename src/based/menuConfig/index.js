@@ -1,4 +1,4 @@
-import { HeaderIcon } from "../icon/configIcon";
+import { HeaderIcon } from "../icon/ConfigIcon";
 
 const MenuHeader = [
   {

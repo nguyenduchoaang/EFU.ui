@@ -5,7 +5,7 @@ import { Button } from "../components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "../components/ui/sheet";
 import { Link } from "react-router-dom";
 import { MenuHeader } from "./menuConfig";
-import { HeaderIcon } from "./icon/configIcon";
+import { HeaderIcon } from "./icon/ConfigIcon";
 import { Color } from "./color";
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -78,7 +78,7 @@ export default function Header() {
 
   return (
     <header
-      style={{ zIndex: "999" }}
+      style={{ zIndex: "999", height: "88px" }}
       className=" w-full z-9999 fixed flex  items-center justify-between bg-background px-4 py-3 shadow-sm sm:px-6 md:py-4"
     >
       <Link href="#" className="flex items-center gap-2 font-bold">
