@@ -72,6 +72,22 @@ var Common = {
 
     return example;
   },
+  renderColor(type) {
+    switch (type) {
+      case "noun":
+        return "#FFCBCB";
+      case "verb":
+        return "#ACE1AF";
+      case "adj":
+        return "#FFCDEA";
+      case "adverb":
+        return "#E59BE9";
+      case "pronoun":
+        return "#B7C9F2";
+      default:
+        return "black";
+    }
+  },
 };
 
 export default Common;
