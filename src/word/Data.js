@@ -118,7 +118,7 @@ const WordData = [
     spelling: "/lʌv/",
     meaning: "tình yêu",
     describe:
-      "To like another adult very much and be romantically and sexually attracted to them, or to have strong feelings of liking a friend or person in",
+      "To like another adult very much and be romantically and sexually attracted to them",
     example: "Love is a beautiful feeling.",
     example_vietnamese: "Tình yêu là một cảm giác tuyệt đẹp.",
   },

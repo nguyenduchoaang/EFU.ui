@@ -24,6 +24,7 @@ const buttonVariants = cva(
         adj: "bg-adj  hover:bg-adj/90",
         adverb: "bg-adverb  hover:bg-adverb/90",
         pronoun: "bg-pronoun  hover:bg-pronoun/90",
+        success: "bg-success  hover:bg-success/90",
       },
       size: {
         default: "h-10 px-4 py-2",

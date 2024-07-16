@@ -1,4 +1,4 @@
-import { useState, useReducer, useEffect } from "react";
+import { useState, useReducer, useEffect, useRef } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { DataMenu, DataCategory, ButtonData, WordData } from "./Data";
@@ -34,97 +34,60 @@ export default function Word() {
 
   const handleToast = (props) => {
     const { title, item, indexItem } = props;
+    let toastTitle, description, actionText, link;
+
     switch (title) {
       case "Đã biết":
-        toast({
-          title: "Từ Đã Biết 💯 ",
-          variant: "success",
-          description: "Bạn đã thêm từ vào danh sách từ vựng Đã Biết !",
-          status: "success",
-          action: (
-            <div className="flex flex-col">
-              <ToastAction className="w-[150px] mb-2" altText="Xem danh sách">
-                Xem danh sách
-              </ToastAction>
-              <ToastAction
-                onClick={() =>
-                  dispatch(
-                    ADD_WORD({
-                      item: item,
-                      indexItem: indexItem,
-                    })
-                  )
-                }
-                altText="Xem danh sách"
-              >
-                Hoàn tác
-              </ToastAction>
-            </div>
-          ),
-        });
+        toastTitle = "Từ Đã Biết 💯 ";
+        description = "Bạn đã thêm từ vào danh sách từ vựng Đã Biết !";
+        actionText = "Hoàn tác";
+        link = "/practice/word";
         break;
       case "Đã nhớ":
-        toast({
-          title: "Từ Đã Nhớ 🔔 ",
-          variant: "success",
-          description: "Bạn đã thêm từ vào danh sách từ vựng Đã Nhớ !",
-          status: "success",
-          action: (
-            <div className="flex flex-col">
-              <ToastAction className="w-[150px] mb-2" altText="Xem danh sách">
-                Xem danh sách
-              </ToastAction>
-              <ToastAction
-                onClick={() =>
-                  dispatch(
-                    ADD_WORD({
-                      item: item,
-                      indexItem: indexItem,
-                    })
-                  )
-                }
-                altText="Xem danh sách"
-              >
-                Hoàn tác
-              </ToastAction>
-            </div>
-          ),
-        });
+        toastTitle = "Từ Đã Nhớ 🔔 ";
+        description = "Bạn đã thêm từ vào danh sách từ vựng Đã Nhớ !";
+        actionText = "Hoàn tác";
+        link = "/practice/word";
         break;
       case "Flash Card":
-        toast({
-          title: "Thêm vào Flash Card 📖 ",
-          variant: "success",
-          description: "Bạn đã thêm từ vào danh sách Flash Card !",
-          status: "success",
-          action: (
-            <div className="flex flex-col">
-              <ToastAction className="w-[150px] mb-2" altText="Xem danh sách">
-                Xem danh sách
-              </ToastAction>
-              <ToastAction
-                onClick={() =>
-                  dispatch(
-                    ADD_WORD({
-                      item: item,
-                      indexItem: indexItem,
-                    })
-                  )
-                }
-                altText="Xem danh sách"
-              >
-                Hoàn tác
-              </ToastAction>
-            </div>
-          ),
-        });
+        toastTitle = "Thêm vào Flash Card 📖 ";
+        description = "Bạn đã thêm từ vào danh sách Flash Card !";
+        actionText = "Hoàn tác";
+        link = "/practice/word";
         break;
       default:
         break;
     }
-  };
 
-  console.log("listWord", listWord);
+    toast({
+      title: toastTitle,
+      variant: "success",
+      description: description,
+      status: "success",
+      action: (
+        <div className="flex flex-col">
+          <Link to={link}>
+            <ToastAction className="w-[150px] mb-2 " altText="Xem danh sách">
+              Xem danh sách
+            </ToastAction>
+          </Link>
+          <ToastAction
+            onClick={() =>
+              dispatch(
+                ADD_WORD({
+                  item: item,
+                  indexItem: indexItem,
+                })
+              )
+            }
+            altText="Hoàn tác"
+          >
+            {actionText}
+          </ToastAction>
+        </div>
+      ),
+    });
+  };
 
   useEffect(() => {}, []);
 
@@ -189,6 +152,7 @@ export default function Word() {
                   handleOnClickBtn={(props) => {
                     dispatch(REMOVE_WORD(props.item.id));
                   }}
+                  minHeight="580px"
                   handleOnClick={(id) => dispatch(SHOW_MARK(id))}
                   showMark={showMark}
                   index={index}

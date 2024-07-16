@@ -15,6 +15,19 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline: "text-foreground",
+        noun: "border-transparent bg-noun text-noun-foreground hover:bg-noun/80",
+        verb: "border-transparent bg-verb text-verb-foreground hover:bg-verb/80",
+        adj: "border-transparent bg-adj text-adjective-foreground hover:bg-adjective/80",
+        adverb:
+          "border-transparent bg-adverb text-adverb-foreground hover:bg-adverb/80",
+        preposition:
+          "border-transparent bg-preposition text-preposition-foreground hover:bg-preposition/80",
+        wordKnow:
+          "border-transparent bg-wordKnow text-wordKnow-foreground hover:bg-wordKnow/80",
+        wordRemember:
+          "border-transparent bg-wordRemember text-wordRemember-foreground hover:bg-wordRemember/80",
+        flashCard:
+          "border-transparent bg-flashCard text-flashCard-foreground hover:bg-flashCard/80",
       },
     },
     defaultVariants: {

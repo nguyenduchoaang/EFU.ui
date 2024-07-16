@@ -20,7 +20,12 @@ export default function Confirm(props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button onClick={() => setOpen(true)}>{props.nameShow}</Button>
+        <Button
+          variant={props.colorBtn ? props.colorBtn : "variant"}
+          onClick={() => setOpen(true)}
+        >
+          {props.nameShow}
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -31,9 +36,10 @@ export default function Confirm(props) {
         <DialogFooter>
           <Button
             type="submit"
+            variant={props.colorBtn ? props.colorBtn : "variant"}
             onClick={() => {
               setOpen(false);
-              props.handleSave("12123312");
+              props.handleSave(props.item);
             }}
           >
             {props.nameBtn}

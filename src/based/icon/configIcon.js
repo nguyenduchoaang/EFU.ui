@@ -6,7 +6,6 @@
 /** Icon for website's header */
 const HeaderIcon = {
   Logo: (props) => {
-    console.log(props);
     return (
       <svg
         {...props}

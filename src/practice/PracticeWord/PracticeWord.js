@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import React, { useReducer } from "react";
 import { Button } from "../../components/ui/button";
 import {
   Card,
@@ -16,20 +16,135 @@ import {
   TableCell,
 } from "../../components/ui/table";
 import { Badge } from "../../components/ui/badge";
-import { DataCard } from "../Data";
+import { DataCard, DataWordTable } from "../Data";
+import TableCustom from "../../based/table/TableComponent";
+import reducer, { initState } from "../reducer/PracticeReducer";
+import { SET_MENU } from "../reducer/action";
+import Confirm from "../../based/Confirm";
+import { useNavigate } from "react-router-dom";
+
+const HeaderTable = [
+  "STT",
+  "Từ vựng",
+  "Nghĩa",
+  "Loại từ vựng",
+  "Ngày học",
+  "Trạng thái",
+  "Hành động",
+];
 
 export default function PracticeWord() {
+  const [state, dispatch] = useReducer(reducer, initState);
+  const navigate = useNavigate();
+  const { selectedMenuItem, totalWord, rememberWord, knownWord } = state;
+  const headerData = HeaderTable;
+  const bodyData = DataWordTable;
+
+  const _renderHeader = () => {
+    return (
+      <TableHeader>
+        <TableRow>
+          {headerData.map((item, index) => (
+            <TableHead key={index}>{item}</TableHead>
+          ))}
+        </TableRow>
+      </TableHeader>
+    );
+  };
+
+  const renderHeaderConfirm = () => {
+    switch (selectedMenuItem) {
+      case 1:
+        return "Ôn tập lại tất cả các từ vựng";
+      case 2:
+        return "Ôn tập lại các từ vựng đã biết";
+      case 3:
+        return "Ôn tập lại các từ vựng đã nhớ";
+      default:
+        break;
+    }
+  };
+
+  const renderBodyConfirm = () => {
+    switch (selectedMenuItem) {
+      case 1:
+        return "Tiến hành ôn tập lại tất cả các từ vựng đã học ?";
+      case 2:
+        return "Tiến hành ôn tập lại các từ vựng đã biết ?";
+      case 3:
+        return "Tiến hành ôn tập lại các từ vựng đã nhớ ?";
+      default:
+        break;
+    }
+  };
+
+  const _renderBodyTable = () => {
+    const dataRender =
+      selectedMenuItem === 1
+        ? totalWord
+        : selectedMenuItem === 2
+        ? rememberWord
+        : knownWord;
+    return (
+      <TableBody>
+        {dataRender.map((item, index) => (
+          <TableRow>
+            <TableCell>{index + 1}</TableCell>
+            <TableCell>
+              <div className="font-medium">{item.word}</div>
+              <div className="text-muted-foreground text-sm">
+                {item.spelling}
+              </div>
+            </TableCell>
+
+            <TableCell>{item.meaning}</TableCell>
+            <TableCell>
+              <Badge variant={item.type}>{item.type}</Badge>
+            </TableCell>
+
+            <TableCell>
+              <time dateTime="2023-06-30">{item.date}</time>
+            </TableCell>
+            <TableCell>
+              <Badge variant="outline">
+                {item.status === 1 ? "Đã biết" : "Đã nhớ"}
+              </Badge>
+            </TableCell>
+            <TableCell>
+              <div className="flex items-center gap-2">
+                <Button variant="ghost" size="icon">
+                  <FilePenIcon className="w-4 h-4" />
+                  <span className="sr-only">Edit</span>
+                </Button>
+                <Button variant="ghost" size="icon">
+                  <TrashIcon className="w-4 h-4" />
+                  <span className="sr-only">Delete</span>
+                </Button>
+              </div>
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    );
+  };
+
   return (
     <div>
       <div className="flex flex-col min-h-screen bg-muted/40">
-        <main className="flex-1 grid gap-6 p-4 sm:p-6">
+        <main className=" grid gap-6 p-4 sm:p-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {DataCard.map((item) => (
               <Card
                 style={{
                   backgroundColor: item.color,
+                  cursor: item.cursor,
                 }}
-                className={item.color}
+                onClick={() => {
+                  if (item.id !== 4) {
+                    dispatch(SET_MENU(item.id));
+                  }
+                }}
+                className={`${item.color}  `}
               >
                 <CardHeader>
                   <CardTitle>{item.title}</CardTitle>
@@ -42,157 +157,37 @@ export default function PracticeWord() {
               </Card>
             ))}
           </div>
-          <div className="grid gap-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold">Tổng quan từ vựng</h2>
-              <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm">
-                  <FilterIcon className="w-4 h-4 mr-2" />
-                  Filter
-                </Button>
-                <Button variant="outline" size="sm">
-                  <DownloadIcon className="w-4 h-4 mr-2" />
-                  Export
-                </Button>
-              </div>
-            </div>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Job Title</TableHead>
-                  <TableHead>Client</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Due Date</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell>
-                    <div className="font-medium">Website Redesign</div>
-                    <div className="text-muted-foreground text-sm">
-                      Acme Inc
-                    </div>
-                  </TableCell>
-                  <TableCell>Acme Inc</TableCell>
-                  <TableCell>
-                    <Badge variant="secondary">Pending</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <time dateTime="2023-06-30">June 30, 2023</time>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Button variant="ghost" size="icon">
-                        <FilePenIcon className="w-4 h-4" />
-                        <span className="sr-only">Edit</span>
-                      </Button>
-                      <Button variant="ghost" size="icon">
-                        <TrashIcon className="w-4 h-4" />
-                        <span className="sr-only">Delete</span>
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <div className="font-medium">Mobile App Development</div>
-                    <div className="text-muted-foreground text-sm">
-                      Globex Corp
-                    </div>
-                  </TableCell>
-                  <TableCell>Globex Corp</TableCell>
-                  <TableCell>
-                    <Badge variant="secondary">Pending</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <time dateTime="2023-07-15">July 15, 2023</time>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Button variant="ghost" size="icon">
-                        <FilePenIcon className="w-4 h-4" />
-                        <span className="sr-only">Edit</span>
-                      </Button>
-                      <Button variant="ghost" size="icon">
-                        <TrashIcon className="w-4 h-4" />
-                        <span className="sr-only">Delete</span>
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <div className="font-medium">ERP System Implementation</div>
-                    <div className="text-muted-foreground text-sm">
-                      Stark Industries
-                    </div>
-                  </TableCell>
-                  <TableCell>Stark Industries</TableCell>
-                  <TableCell>
-                    <Badge variant="success">Completed</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <time dateTime="2023-05-31">May 31, 2023</time>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Button variant="ghost" size="icon">
-                        <FilePenIcon className="w-4 h-4" />
-                        <span className="sr-only">Edit</span>
-                      </Button>
-                      <Button variant="ghost" size="icon">
-                        <TrashIcon className="w-4 h-4" />
-                        <span className="sr-only">Delete</span>
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <div className="font-medium">CRM System Upgrade</div>
-                    <div className="text-muted-foreground text-sm">
-                      Stark Industries
-                    </div>
-                  </TableCell>
-                  <TableCell>Stark Industries</TableCell>
-                  <TableCell>
-                    <Badge variant="error">Overdue</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <time dateTime="2023-06-15">June 15, 2023</time>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <Button variant="ghost" size="icon">
-                        <FilePenIcon className="w-4 h-4" />
-                        <span className="sr-only">Edit</span>
-                      </Button>
-                      <Button variant="ghost" size="icon">
-                        <TrashIcon className="w-4 h-4" />
-                        <span className="sr-only">Delete</span>
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </div>
-          {/* <div className="grid gap-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold">Upcoming Deadlines</h2>
+        </main>
+        <div className="grid gap-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold">Tổng quan từ vựng</h2>
+            <div className="flex items-center gap-2">
+              <Confirm
+                header={renderHeaderConfirm()}
+                content={renderBodyConfirm()}
+                nameShow="Ôn tập"
+                colorBtn="success"
+                nameBtn="Đi thôi !"
+                item={selectedMenuItem}
+                handleSave={(item) => {
+                  navigate(`/practice/exam-word/${item}`);
+                }}
+              ></Confirm>
+
               <Button variant="outline" size="sm">
-                <CalendarIcon className="w-4 h-4 mr-2" />
-                View Calendar
+                <DownloadIcon className="w-4 h-4 mr-2" />
+                Export
               </Button>
             </div>
-            <Card>
-              <CardContent>
-                <Calendar mode="single" />
-              </CardContent>
-            </Card>
-          </div> */}
-        </main>
+          </div>
+          <TableCustom
+            renderHeader={_renderHeader}
+            renderBody={_renderBodyTable}
+            length={bodyData.length}
+            itemsPerPage={10}
+          />
+          <Table></Table>
+        </div>
       </div>
     </div>
   );

@@ -8,46 +8,47 @@ import {
   TableCell,
 } from "../../components/ui/table";
 import PaginationBase from "../pagination";
-export function TableHeaderCustom(props) {
-  return (
-    <TableHeader
-      className="bg-gray-50"
-      style={{ borderBottom: "1px solid #e2e8f0" }}
-    >
-      <TableRow>
-        {props.header && props.header.length > 0 ? (
-          props.header.map((item, index) => (
-            <TableHead key={index}>{item}</TableHead>
-          ))
-        ) : (
-          <TableHead>Không có dữ liệu</TableHead>
-        )}
-      </TableRow>
-    </TableHeader>
-  );
-}
+// export function TableHeaderCustom(props) {
+//   return (
+//     <TableHeader
+//       className="bg-gray-50"
+//       style={{ borderBottom: "1px solid #e2e8f0" }}
+//     >
+//       <TableRow>
+//         {props.header && props.header.length > 0 ? (
+//           props.header.map((item, index) => (
+//             <TableHead key={index}>{item}</TableHead>
+//           ))
+//         ) : (
+//           <TableHead>Không có dữ liệu</TableHead>
+//         )}
+//       </TableRow>
+//     </TableHeader>
+//   );
+// }
 
-export function TableBodyCustom(props) {
-  return (
-    <>
-      <TableBody>
-        {props.body &&
-          props.body.length > 0 &&
-          props.body.map((item, rowIndex) => (
-            <TableRow key={rowIndex}>
-              {item.map((cell, cellIndex) => (
-                <TableCell key={cellIndex}>{cell}</TableCell>
-              ))}
-            </TableRow>
-          ))}
-      </TableBody>
-    </>
-  );
-}
+// export function TableBodyCustom(props) {
+//   return (
+//     <>
+//       <TableBody>
+//         {props.body &&
+//           props.body.length > 0 &&
+//           props.body.map((item, rowIndex) => (
+//             <TableRow key={rowIndex}>
+//               {item.map((cell, cellIndex) => (
+//                 <TableCell key={cellIndex}>{cell}</TableCell>
+//               ))}
+//             </TableRow>
+//           ))}
+//       </TableBody>
+//     </>
+//   );
+// }
 
-export function TableCustom(props) {
+export default function TableCustom(props) {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const { bodyLength, itemsPerPage: itemsPerPageFromProps } = props;
+  const itemsPerPage = itemsPerPageFromProps ? itemsPerPageFromProps : 5;
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -63,11 +64,11 @@ export function TableCustom(props) {
         className="min-w-full divide-y divide-gray-200 shadow-sm border-b border-gray-200 sm:rounded-lg overflow-hidden mt-4    "
         style={{ borderCollapse: "collapse" }}
       >
-        <TableHeaderCustom header={props.header} />
-        {props.body.length > 0 && <TableBodyCustom body={currentItems} />}
+        {props.renderHeader()}
+        {props.renderBody()}
       </Table>
       <PaginationBase
-        totalPages={Math.ceil(props.body && props.body.length / itemsPerPage)}
+        totalPages={Math.ceil(bodyLength / itemsPerPage)}
         currentPage={currentPage}
         onChangePage={handlePageChange}
       />
