@@ -28,9 +28,7 @@ const CardWord = (props) => {
           border: `1px solid ${Common.renderColor(item.type)}`,
           boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
         }}
-        className={`relative h-auto ${
-          props.minHeight ? `min-h-[${props.minHeight}]` : "min-h-[480px]"
-        } overflow-hidden rounded-lg group  shadow-md`}
+        className={`relative h-auto min-h-[565px] overflow-hidden rounded-lg group  shadow-md`}
       >
         <CardContent className="h-full  p-0 ">
           <div className="card_header h-[10%] ">

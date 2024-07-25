@@ -10,8 +10,14 @@ const MenuHeader = [
   {
     id: 2,
     link: "/speaking",
-    name: "Luyện nói",
+    name: "Nói",
     icon: <HeaderIcon.Speaking />,
+  },
+  {
+    id: 4,
+    link: "/listen",
+    name: "Nghe",
+    icon: <HeaderIcon.Listen />,
   },
   {
     id: 3,
@@ -19,6 +25,7 @@ const MenuHeader = [
     name: "Từ vựng",
     icon: <HeaderIcon.Word />,
   },
+
   {
     id: 4,
     link: "/practice",
