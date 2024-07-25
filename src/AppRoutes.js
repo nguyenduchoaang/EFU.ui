@@ -6,9 +6,11 @@ const Speaking = React.lazy(() => import("./speaking/speaking"));
 const Word = React.lazy(() => import("./word/word"));
 const Practice = React.lazy(() => import("./practice/Practice"));
 const ExamWord = React.lazy(() => import("./practice/PracticeWord/ExamWord"));
+const Listen = React.lazy(() => import("./listen/listen"));
 const PracticeWord = React.lazy(() =>
   import("./practice/PracticeWord/PracticeWord")
 );
+
 const AppRoutes = [
   {
     path: "/",
@@ -55,6 +57,14 @@ const AppRoutes = [
     element: (
       <Suspense fallback={<Loading isOpen={true} />}>
         <ExamWord />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/listen",
+    element: (
+      <Suspense fallback={<Loading isOpen={true} />}>
+        <Listen />
       </Suspense>
     ),
   },

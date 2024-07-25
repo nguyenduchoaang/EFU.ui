@@ -7,21 +7,15 @@ const DataMenuSpeaking = [
     menu: [
       {
         id: 1,
-        title: "Giới thiệu",
+        title: "Nghe podcast",
         icon: <ListeningIcon.Podcast />,
-        link: "/speaking/news",
+        link: "/speaking/speak",
       },
       {
-        id: 3,
-        title: "Luyện phát âm",
+        id: 2,
+        title: "Nghe nhạc",
         icon: <ListeningIcon.Music />,
         link: "/speaking/pronunciation",
-      },
-      {
-        id: 4,
-        title: "Luyện nói",
-        icon: <ListeningIcon.Topic />,
-        link: "/speaking/speak",
       },
     ],
   },
@@ -30,7 +24,17 @@ const DataMenuSpeaking = [
     title: "Luyện tập",
     menu: [
       {
-        id: 5,
+        id: 3,
+        title: "Nghe cơ bản",
+        icon: <ListeningIcon.Discord />,
+      },
+      {
+        id: 4,
+        title: "Nghe nâng cao",
+        icon: <ListeningIcon.Discord />,
+      },
+      {
+        id: 4,
         title: "Tham gia Discord",
         icon: <ListeningIcon.Discord />,
       },

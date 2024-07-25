@@ -13,12 +13,12 @@ const MenuHeader = [
     name: "Nói",
     icon: <HeaderIcon.Speaking />,
   },
-  {
-    id: 4,
-    link: "/listen",
-    name: "Nghe",
-    icon: <HeaderIcon.Listen />,
-  },
+  // {
+  //   id: 4,
+  //   link: "/listen",
+  //   name: "Nghe",
+  //   icon: <HeaderIcon.Listen />,
+  // },
   {
     id: 3,
     link: "/word",
