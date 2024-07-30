@@ -1,5 +1,6 @@
 const initStates = {
   menuSelected: 1,
+  playList: [],
 };
 
 const reducer = (state, action) => {
@@ -8,6 +9,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         menuSelected: action.payload,
+      };
+    case "SET_PLAYLIST":
+      return {
+        ...state,
+        playList: action.payload,
       };
     default:
       return state;

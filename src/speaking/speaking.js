@@ -3,17 +3,49 @@ import styled from "styled-components";
 import { useToast } from "../components/ui/use-toast";
 import { DataMenuSpeaking } from "./Data";
 import reducer, { initStates } from "./reducer/reducer";
-import { SET_MENU } from "./reducer/action";
-import { sub } from "date-fns";
-import Discord from "../based/Discord";
+import { SET_MENU, SET_PLAYLIST } from "./reducer/action";
+import { PlayList } from "../based/PlayList";
 
 export default function Speaking() {
-  const { toast } = useToast();
   const [state, dispatch] = useReducer(reducer, initStates);
+  const { toast } = useToast();
   const audioSrc = "/media/test.mp3";
-  const [menuSelected, setMenuSelected] = useState(1);
+  const { playList } = state;
 
   useEffect(() => {}, []);
+
+  const handleGetPlayList = async () => {
+    const list = [
+      {
+        id: 1,
+        name: "Các đoạn hội thoại thông dụng",
+        description: "Nghe các đoạn hội thoại thông dụng",
+      },
+      {
+        id: 2,
+        name: "Các câu hỏi phỏng vấn",
+        description: "Nghe các câu hỏi phỏng vấn",
+      },
+    ];
+    return list;
+  };
+  useEffect(() => {
+    switch (state.menuSelected) {
+      case 1:
+        handleGetPlayList().then((list) => dispatch(SET_PLAYLIST(list)));
+        break;
+      default:
+        break;
+    }
+  }, [state.menuSelected]);
+  const renderBody = (numberMenu) => {
+    switch (numberMenu) {
+      case 1:
+        return <PlayList playList={playList} />;
+      default:
+        break;
+    }
+  };
 
   return (
     <WordWrapper className="flex min-h-screen max-md:flex-col   w-full bg-background">
@@ -52,19 +84,7 @@ export default function Speaking() {
           })}
         </div>
       </aside>
-
-      <main className="flex-1 p-6">
-        <div className="grid gap-6">
-          {/* <section className="grid grid-cols-1 gap-8 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-            1221
-            <audio controls>
-              <source src={audioSrc} type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-          </section>
-           */}
-        </div>
-      </main>
+      {renderBody(state.menuSelected)}
     </WordWrapper>
   );
 }

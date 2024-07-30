@@ -5,4 +5,11 @@ const SET_MENU = (payload) => {
   };
 };
 
-export { SET_MENU };
+const SET_PLAYLIST = (payload) => {
+  return {
+    type: "SET_PLAYLIST",
+    payload: payload,
+  };
+};
+
+export { SET_MENU, SET_PLAYLIST };
