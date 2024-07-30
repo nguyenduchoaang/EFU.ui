@@ -12,13 +12,13 @@ const DataMenuSpeaking = [
         link: "/speaking/news",
       },
       {
-        id: 3,
+        id: 2,
         title: "Luyện phát âm",
         icon: <ListeningIcon.Music />,
         link: "/speaking/pronunciation",
       },
       {
-        id: 4,
+        id: 3,
         title: "Luyện nói",
         icon: <ListeningIcon.Topic />,
         link: "/speaking/speak",

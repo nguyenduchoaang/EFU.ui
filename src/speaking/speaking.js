@@ -5,6 +5,7 @@ import { DataMenuSpeaking } from "./Data";
 import reducer, { initStates } from "./reducer/reducer";
 import { SET_MENU, SET_PLAYLIST } from "./reducer/action";
 import { PlayList } from "../based/PlayList";
+import { IPAPage } from "../based/IPAPage";
 
 export default function Speaking() {
   const [state, dispatch] = useReducer(reducer, initStates);
@@ -14,7 +15,7 @@ export default function Speaking() {
 
   useEffect(() => {}, []);
 
-  const handleGetPlayList = async () => {
+  const handleGetPlayList = () => {
     const list = [
       {
         id: 1,
@@ -29,19 +30,25 @@ export default function Speaking() {
     ];
     return list;
   };
+
+  // xử lý khi chọn menu
   useEffect(() => {
     switch (state.menuSelected) {
       case 1:
-        handleGetPlayList().then((list) => dispatch(SET_PLAYLIST(list)));
+        dispatch(SET_PLAYLIST(handleGetPlayList()));
         break;
       default:
         break;
     }
   }, [state.menuSelected]);
+
+  // render nội dung của body (sau khi chon menu)
   const renderBody = (numberMenu) => {
     switch (numberMenu) {
       case 1:
         return <PlayList playList={playList} />;
+      case 2:
+        return <IPAPage />;
       default:
         break;
     }
